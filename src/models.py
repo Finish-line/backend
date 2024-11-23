@@ -7,8 +7,8 @@ class Driver(SQLModel, table=True):
     
     email: str = Field(nullable=False)
 
-    position_lat: float = Field(default=None)
-    position_long: float = Field(default=None)
+    position_lat: float = Field(default=0.)
+    position_long: float = Field(default=0.)
 
 class Trip(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
