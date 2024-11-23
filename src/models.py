@@ -3,7 +3,7 @@ from sqlmodel import Field, SQLModel
 
 class Driver(SQLModel, table=True):
     id: int = Field(primary_key=True)
-    active: bool = Field(default=True)
+    active: bool = Field(default=False)
     car_type: str = Field(nullable=False)
     
     email: str = Field(nullable=False)

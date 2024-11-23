@@ -87,6 +87,15 @@ def create_or_update_driver(
             status_code=status.HTTP_400_BAD_REQUEST
         )
 
+@router.get("/trip")
+def get_trips(
+    session: SessionDep,
+    token: TokenDependency
+):
+    trips = session.exec(select(models.Trip)).all()
+    
+    return trips
+
 @router.post("/trip")
 def create_trip(
     session: SessionDep,
