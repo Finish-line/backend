@@ -2,16 +2,8 @@
 Off chain backend
 
 ```
-# auth
-POST /api/auth/verify -> verifys web3auth
-
-# drivers
-GET /api/driver/?area=... -> get drivers in area
-POST /api/driver/location -> update driver location
-
-# routes
-POST /api/routes        -> create route request
-GET /api/routes?area=... -> route requests in area
-
-# 
+python3.10 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python uvicorn src.main:app
 ```

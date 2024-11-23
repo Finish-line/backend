@@ -1,11 +1,3 @@
-"""
-    Main entry point
-
-    1. Creates fastapi instance
-    2. Sets up middleware
-    3. Builds all database models
-    4. Includes all routers (api endpoints)
-"""
 import fastapi
 from fastapi.middleware.cors import CORSMiddleware
 

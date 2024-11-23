@@ -3,7 +3,7 @@ import fastapi
 from fastapi import HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordBearer
 
-from src.auth.service import verify_magic_token, create_if_not_exists
+from src.auth.service import verify_magic_token
 from src.auth.utils import Token
 
 router = fastapi.APIRouter(prefix="/api/auth")

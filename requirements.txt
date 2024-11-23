@@ -1,0 +1,8 @@
+auto_mix_prep
+fastapi
+geopy
+googlemaps
+magic-admin
+PyJWT
+sqlmodel
+uvicorn

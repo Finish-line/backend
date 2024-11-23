@@ -2,7 +2,7 @@ from geopy.distance import geodesic
 
 import googlemaps
 
-from src.rest.config import GOOGLE_MAPS_API_KEY
+from src.config import GOOGLE_MAPS_API_KEY
 
 gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
 
