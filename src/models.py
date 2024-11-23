@@ -4,6 +4,8 @@ class Driver(SQLModel, table=True):
     id: int = Field(primary_key=True)
     active: bool = Field(default=True)
     car_type: str = Field(nullable=False)
+    
+    email: str = Field(nullable=False)
 
     position_lat: float = Field(default=None)
     position_long: float = Field(default=None)

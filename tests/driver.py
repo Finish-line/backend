@@ -14,8 +14,9 @@ def driver_story():
     driver_data = {
         'car_type': 'Volvo XC70'
     }
+    
     response = client.post('/api/driver', headers=jwt_headers, json=driver_data)
-    print(response)
+    print(response.json())
 
 if __name__ == '__main__':
     driver_story()

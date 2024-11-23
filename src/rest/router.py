@@ -72,7 +72,7 @@ def create_or_update_driver(
 
         else:
             # Create new driver
-            driver = models.Driver(**payload.model_dump())
+            driver = models.Driver(**payload.model_dump(), email=email)
 
         session.add(driver)
         session.commit()
