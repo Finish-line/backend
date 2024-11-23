@@ -3,10 +3,10 @@ from sqlmodel import Field, SQLModel
 class Driver(SQLModel, table=True):
     id: int = Field(primary_key=True)
     active: bool = Field(default=True)
-    car_type: str = Field(nullable=False)
+    car_type: str = Field()
 
-    position_lat: float = Field(nullable=False)
-    position_long: float = Field(nullable=False)
+    position_lat: float = Field()
+    position_long: float = Field()
 
 class Trip(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
