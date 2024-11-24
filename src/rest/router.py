@@ -42,7 +42,7 @@ def get_ride(id: int):
     raise HTTPException(status.HTTP_404_NOT_FOUND)
 
 class CreateRideData(SQLModel):
-    price:int
+    price:float
     start:str
     start_lat:float
     start_long:float 
