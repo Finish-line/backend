@@ -74,6 +74,38 @@ def create_ride(
 @router.put("/rides/claim/{id}")
 def claim_ride(id:int):
     ride = rides[id]
-    
     rides.remove(ride)
-    return ride
+    
+    active_ride_id = len(active_rides)
+    new_active_ride = {'id': active_ride_id, 'userMark': False, 'driverMark': False}
+    active_rides.append(new_active_ride)
+    
+    return {**ride, 'activeRideId': active_ride_id}
+
+
+active_rides = []
+@router.get("/rides/active/{id}")
+def get_active_ride(id: int):
+    for active_ride in active_rides:
+        if active_ride['id'] == id:
+            return active_ride
+    
+    raise HTTPException(status.HTTP_404_NOT_FOUND)
+
+@router.get("/rides/active/{id}/mark/{role}")
+def mark_active_ride(id: int, role:str):
+    active_ride = None
+    
+    for ar in active_rides:
+        if ar['id'] == id:
+            active_ride = ar
+
+    if active_ride is None:    
+        raise HTTPException(status.HTTP_404_NOT_FOUND)
+    
+    if role == 'driver':
+        active_ride['driverMark'] = True
+    else:
+        active_ride['userMark'] = True
+    
+    return active_ride
