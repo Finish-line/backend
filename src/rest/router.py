@@ -1,5 +1,6 @@
 import fastapi
 from fastapi import HTTPException, status
+from sqlmodel import SQLModel
 
 from src.rest.service import calculate_time_distance
 
@@ -40,28 +41,36 @@ def get_ride(id: int):
     
     raise HTTPException(status.HTTP_404_NOT_FOUND)
 
+class CreateRideData(SQLModel):
+    price:int
+    start:str
+    start_lat:float
+    start_long:float 
+    dest:str
+    dest_lat:float
+    dest_long:float
+
 @router.post("/ride")
 def create_ride(
-    price:int,
-    start:str,
-    start_lat:float,
-    start_long:float, 
-    dest:str,
-    dest_lat:float,
-    dest_long:float
+    payload: CreateRideData
 ):
     id = rides[-1]['id'] + 1
-    duration, distance = calculate_time_distance(start_lat, start_long, dest_lat, dest_long)
+    duration, distance = calculate_time_distance(
+        payload.start_lat,
+        payload.start_long,
+        payload.dest_lat,
+        payload.dest_long
+    )
     new_ride = {
         'id' : id,
-        'price': price,
+        'price': payload.price,
         'duration' : duration,
-        'start' : start,
-        'startLat' : start_lat,
-        'startLong': start_long,
-        'destination': dest,
-        'destLat': dest_lat,
-        'destLong' : dest_long,
+        'start' : payload.start,
+        'startLat' : payload.start_lat,
+        'startLong': payload.start_long,
+        'destination': payload.dest,
+        'destLat': payload.dest_lat,
+        'destLong' : payload.dest_long,
         'distance': distance
     }
     
