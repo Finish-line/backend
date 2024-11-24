@@ -1,3 +1,4 @@
+from fastapi import HTTPException, status
 from geopy.distance import geodesic
 
 import googlemaps
@@ -21,12 +22,15 @@ def calculate_time_distance(
     destination_lat,
     destination_long
 ):
-    origin = str(origin_lat) + ", " + str(origin_long)
-    destination = str(destination_lat) + ", " + str(destination_long)
+    try:
+        origin = str(origin_lat) + ", " + str(origin_long)
+        destination = str(destination_lat) + ", " + str(destination_long)
+        
+        distance_matrix = gmaps.distance_matrix(origin, destination, mode="driving")
+        
+        duration = distance_matrix['rows'][0]['elements'][0]['duration']['value'] / 60
+        distance = distance_matrix['rows'][0]['elements'][0]['distance']['value']
+        return duration, distance
     
-    distance_matrix = gmaps.distance_matrix(origin, destination, mode="driving")
-    
-    duration = distance_matrix['rows'][0]['elements'][0]['duration']['value'] / 60
-    distance = distance_matrix['rows'][0]['elements'][0]['distance']['value']
-    return duration, distance
-
+    except Exception as exc:
+        HTTPException(status.HTTP_400_BAD_REQUEST)

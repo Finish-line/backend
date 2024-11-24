@@ -26,6 +26,6 @@ rides = [
     {'id': 4, 'price': 0.03, 'duration' : 540, 'start': 'Altstadt-Lehel', 'start_lat': 48.138376,'start_long': 11.580843, 'destination': 'Sendling', 'destination_lat': 48.118267, 'destination_long':11.552381}
 ]
 
-@router.get("/trip")
+@router.get("/rides")
 def get_trips():
     return rides
