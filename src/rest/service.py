@@ -27,6 +27,6 @@ def calculate_time_distance(
     distance_matrix = gmaps.distance_matrix(origin, destination, mode="driving")
     
     duration = distance_matrix['rows'][0]['elements'][0]['duration']['value'] / 60
-    distance = distance_matrix['rows'][0]['elements'][0]['distance']['value'] / 1000
+    distance = distance_matrix['rows'][0]['elements'][0]['distance']['value']
     return duration, distance
 
