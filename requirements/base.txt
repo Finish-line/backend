@@ -1,6 +1,0 @@
-fastapi[standard]
-sqlmodel
-geopy
-googlemaps
-PyJWT
-magic-admin
