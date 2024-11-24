@@ -1,5 +1,4 @@
 import fastapi
-
 from fastapi import HTTPException, status
 
 from src.rest.service import calculate_time_distance
